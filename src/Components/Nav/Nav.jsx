@@ -12,9 +12,7 @@ const Nav = ({ navLink }) => {
               <div>
                 <AiOutlineBars size={17} />
               </div>
-              <div className="flex items-center gap-4 lg:gap-7">
-                {navLink}
-              </div>
+              <div className="flex items-center gap-4 lg:gap-7">{navLink}</div>
             </div>
           </div>
           <div className="lg:navbar-end">

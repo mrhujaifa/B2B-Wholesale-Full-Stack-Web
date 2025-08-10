@@ -3,6 +3,8 @@ import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { Link } from "react-router";
+import Navbar from "../../Components/Navbar/Navbar";
+import NavbarSwitcher from "../../Components/ScrollNavbar/NavbarSwicher";
 
 const CartPage = () => {
   const { user } = useContext(AuthContext);
@@ -56,10 +58,11 @@ const CartPage = () => {
 
   return (
     <div>
-      <header className="bg-[#010100e9] shadow-2xl fixed top-0 right-0 left-0 z-20">
-        <Header />
+      <header className=" text-black top-0 right-0 left-0 z-20">
+        <Navbar></Navbar>
+        <NavbarSwitcher></NavbarSwitcher>
       </header>
-      <div className="max-w-6xl mx-auto px-4 py-8 mt-15 lg:mt-30 md:mt-25">
+      <div className="container mx-auto px-4 py-8 mt-15 lg:mt-10 md:mt-25">
         
 
         {cartItems.length === 0 ? (

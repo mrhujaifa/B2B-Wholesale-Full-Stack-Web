@@ -5,6 +5,8 @@ import Product from "../Product/Product";
 import Skeleton from "@mui/material/Skeleton";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import NavbarSwitcher from "../../Components/ScrollNavbar/NavbarSwicher";
+import Navbar from "../../Components/Navbar/Navbar";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -40,8 +42,9 @@ const AllProducts = () => {
 
   return (
     <div>
-      <header className="bg-[#010100e9] shadow-2xl fixed top-0 right-0 left-0 z-20">
-        <Header />
+      <header className=" text-black top-0 right-0 left-0 z-20">
+        <Navbar />
+        <NavbarSwitcher />
       </header>
 
       <motion.div
@@ -49,13 +52,13 @@ const AllProducts = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="mt-40 container mx-auto flex flex-wrap gap-4 items-center justify-center">
-          <div className="border w-60 p-4 rounded-2xl">
-            <label className="font-semibold">Filter by Minimum Quantity:</label>
+        <div className="flex container justify-between mt-10 mx-auto items-center">
+          <div className=" rounded-2xl mx-5 lg:mx-0   ">
+            <label className="font-semibold">Filter by Minimum Quantity:</label> <br />
             <select
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
-              className="border px-3 py-1 rounded mt-2 w-full"
+              className="border px-3 py-1 rounded w-40"
             >
               <option value="All">All</option>
               <option value="100">100+</option>
@@ -64,7 +67,7 @@ const AllProducts = () => {
             </select>
           </div>
 
-          <div className="border w-60 p-4 rounded-2xl">
+          <div className=" w-60 p-4 rounded-2xl">
             <label className="font-semibold">View Type:</label>
             <select
               value={viewType}
@@ -79,7 +82,7 @@ const AllProducts = () => {
 
         <div className="container mx-auto mt-12">
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[...Array(6)].map((_, index) => (
                 <div key={index} className="border rounded-lg p-2">
                   <Skeleton
@@ -112,7 +115,7 @@ const AllProducts = () => {
             </div>
           ) : viewType === "card" ? (
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6"
               initial="hidden"
               animate="visible"
               variants={{
@@ -123,16 +126,63 @@ const AllProducts = () => {
                 },
               }}
             >
-              {filter.map((product) => (
-                <motion.div
-                  key={product._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                >
-                  <Product product={product} />
-                </motion.div>
-              ))}
+              {[...filter]
+                .sort((a, b) => a.price - b.price) // price ছোট থেকে বড় ক্রমে সাজানো
+                .map((product) => (
+                  <motion.div
+                    key={product._id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="bg-gradient-to-tr from-white via-gray-50 to-gray-100 rounded-3xl shadow-xl p-6 flex flex-col justify-between h-[380px] w-full max-w-xs mx-auto cursor-pointer 
+                 hover:shadow-2xl hover:scale-[1.03] transition-transform duration-300"
+                  >
+                    <div className="overflow-hidden rounded-2xl mb-4 h-48">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div className="flex flex-col flex-grow">
+                      <h3
+                        className="text-lg font-extrabold text-gray-900 truncate mb-2"
+                        title={product.name}
+                      >
+                        {product.name}
+                      </h3>
+
+                      <div className="flex justify-between items-center mb-2 text-sm text-gray-600 font-medium">
+                        <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
+                          ${product.price}
+                        </span>
+                        <span className="italic">{product.category}</span>
+                      </div>
+
+                      <hr className="border-gray-300 mb-3" />
+
+                      <p className="text-gray-700 text-sm">
+                        Min Qty:{" "}
+                        <span className="font-semibold">
+                          {product.minimumSellingQuantity}
+                        </span>
+                      </p>
+                    </div>
+
+                    <div className="mt-4">
+                      <Link to={`/products/${product._id}`}>
+                        <button
+                          className="w-full bg-orange-600 hover:bg-orange-500 text-white font-semibold py-2 rounded-xl shadow-md transition-colors duration-300"
+                          aria-label={`View details of ${product.name}`}
+                        >
+                          Details
+                        </button>
+                      </Link>
+                    </div>
+                  </motion.div>
+                ))}
             </motion.div>
           ) : (
             <div className="overflow-x-auto mt-10 mb-20">

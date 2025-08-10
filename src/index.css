@@ -6,5 +6,9 @@ body {
   font-family: "Roboto", sans-serif;
 }
 svg.star-svg {
-    display: inline;
+  display: inline;
+}
+
+:root {
+  --primary: #ff6600;
 }

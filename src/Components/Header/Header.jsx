@@ -24,8 +24,12 @@ const Header = () => {
       </Link>
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/allproducts"}>All product</NavLink>
-      <NavLink to={"/addProducts"}>Add Product</NavLink>
-      <NavLink to={"/myproducts"}>My product</NavLink>
+      {user ? (
+        <>
+          <NavLink to={"/addProducts"}>Add Product</NavLink>
+          <NavLink to={"/myproducts"}>My product</NavLink>
+        </>
+      ) : null}
     </>
   );
 
@@ -40,13 +44,13 @@ const Header = () => {
   return (
     <div className="container mx-auto">
       <div className="py-2">
-        <div className="flex items-center mt-2 ">
+        <div className="flex items-center mt-2">
           <div className="navbar-start">
             <div className="dropdown">
               <div
                 tabIndex={0}
                 role="button"
-                className="text-white  w-1 mx-2 lg:hidden"
+                className="text-black  w-1 mx-2 lg:hidden"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,10 +76,12 @@ const Header = () => {
               </ul>
             </div>
             <span className="text-xl flex items-center gap-2 px-6 lg:px-0">
-              <img className="w-8 lg:w-10 " src="/web-logo.png" alt="" />
+              <img className="w-8 lg:w-20 " src="/web-logo.png" alt="" />
               <p className=" font-bold hidden lg:block">
-                <span className="text-orange-600">B2B </span>
-                <span className="text-orange-500 text-sm">wholesale</span>
+                {/* <span className="text-white">B2B </span>   */}
+                <span className="text-[#ff6600] text-sm absolute left-47 top-1">
+                  Wholesale
+                </span>
               </p>
             </span>
           </div>
@@ -84,13 +90,15 @@ const Header = () => {
               {navLink}
             </ul> */}
           </div>
-          <div className="navbar-end gap-3 lg:gap-6 items-center flex">
-            <div className="">
+          <div className="navbar-end  gap-3 lg:gap-6 items-center flex">
+            <div className="hidden lg:block">
               <p className="text-white lg:text-[11px] text-[9px] ">Deliver:</p>
 
               <span className="flex gap-1 items-center ">
                 <img className="w-4 lg:w-5" src="/Bangladesh.png" alt="" />
-                <p className=" text-[7px] lg:text-[11px] font-semibold text-white">BD</p>
+                <p className=" text-[7px] lg:text-[11px] font-semibold text-white">
+                  BD
+                </p>
               </span>
             </div>
 
@@ -152,9 +160,9 @@ const Header = () => {
                 <div>
                   <Link
                     to={"/register"}
-                    className="border text-md font-medium bg-orange-600 px-4 py-1 rounded-2xl text-white hover:bg-none border-orange-300"
+                    className="border text-md font-medium bg-orange-600 px-1 py-2 rounded-2xl text-white hover:bg-none border-orange-300"
                   >
-                    Register
+                    Create account
                   </Link>
                 </div>
               </>

@@ -17,17 +17,16 @@ const suppliers = [
   { name: "United Kingdom", flag: "https://flagcdn.com/w40/gb.png" },
   { name: "United States", flag: "https://flagcdn.com/w40/us.png" },
   { name: "Canada", flag: "https://flagcdn.com/w40/ca.png" },
-//   { name: "Spain", flag: "https://flagcdn.com/w40/es.png" },
 ];
 
 const CountrySuppliers = () => {
   return (
-    <div className="py-8">
-      <h2 className="text-2xl font-semibold mb-8">
+    <div className="py-8 container mx-auto">
+      <h2 className="text-2xl font-semibold mb-8 text-center">
         Find suppliers by country or region
       </h2>
 
-      <div className="flex justify-center gap-9">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6 justify-items-center">
         {suppliers.map((supplier) => (
           <div
             key={supplier.name}
@@ -40,7 +39,7 @@ const CountrySuppliers = () => {
                 className="w-10 h-10 rounded-full object-cover"
               />
             </div>
-            <span className="text-sm">{supplier.name}</span>
+            <span className="text-sm text-center">{supplier.name}</span>
           </div>
         ))}
       </div>

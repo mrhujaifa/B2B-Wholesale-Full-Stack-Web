@@ -5,6 +5,8 @@ import { useLoaderData, useNavigate } from "react-router";
 import { Rating } from "react-simple-star-rating";
 import { AuthContext } from "../../Contexts/AuthContext";
 import CircularProgress from "@mui/material/CircularProgress"; 
+import Navbar from "../../Components/Navbar/Navbar";
+import NavbarSwitcher from "../../Components/ScrollNavbar/NavbarSwicher";
 
 const ProductDetails = () => {
   const product = useLoaderData();
@@ -96,8 +98,9 @@ const ProductDetails = () => {
 
   return (
     <div>
-      <header className="bg-[#010100e9] shadow-2xl fixed top-0 right-0 left-0 z-20">
-        <Header />
+      <header className=" text-black top-0 right-0 left-0 z-20">
+        <Navbar></Navbar>
+        <NavbarSwitcher></NavbarSwitcher>
       </header>
 
       <div
