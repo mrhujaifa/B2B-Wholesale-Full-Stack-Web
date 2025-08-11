@@ -65,7 +65,7 @@ const Register = () => {
         <NavbarSwitcher></NavbarSwitcher>
       </header>
 
-      <div className="min-h-screen flex items-center mt-20 justify-center bg-gray-100 p-4">
+      <div className=" flex items-center mt-10 mb-10 justify-center  p-4">
         <div className="flex w-full max-w-7xl bg-white rounded-2xl shadow-2xl overflow-hidden">
           <div
             className="w-1/2 hidden md:flex flex-col items-center justify-center bg-cover relative"

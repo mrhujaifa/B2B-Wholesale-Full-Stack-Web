@@ -57,7 +57,7 @@ const Header = ({theme,toggleTheme}) => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
+                  className="h-6 w-6 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -78,8 +78,8 @@ const Header = ({theme,toggleTheme}) => {
                 {navLink}
               </ul>
             </div>
-            <span className="text-xl flex items-center gap-2 px-6 lg:px-0">
-              <img className="w-8 lg:w-20 " src="/web-logo.png" alt="" />
+            <span className="text-xl flex items-center  gap-2 px-6 lg:px-0">
+              <img className="w-13 lg:w-20 " src="/web-logo.png" alt="" />
               <p className=" font-bold hidden lg:block">
                 {/* <span className="text-white">B2B </span>   */}
                 <span className="text-orange-600 text-sm absolute left-47 top-1">
@@ -166,7 +166,7 @@ const Header = ({theme,toggleTheme}) => {
                 <div>
                   <Link
                     to={"/register"}
-                    className=" hidden lg:block text-md font-medium bg-orange-600 px-3 py-1.5 rounded-lg text-white hover:bg-none border border-orange-500  border-orange-300"
+                    className=" hidden lg:block  text-md font-medium bg-orange-600 px-3 py-1.5 rounded-lg text-white hover:bg-none border border-orange-500  "
                   >
                     Create account
                   </Link>

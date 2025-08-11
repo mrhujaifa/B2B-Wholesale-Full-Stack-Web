@@ -162,7 +162,7 @@ const Navbar = () => {
                 <div>
                   <Link
                     to={"/register"}
-                    className="border text-md font-medium bg-orange-600 px-1 py-2 rounded-2xl hover:bg-none border-orange-300 text-base-content"
+                    className="border hidden lg:block text-md font-medium bg-orange-600 text-white px-2 py-2 rounded-lg  hover:bg-none border-orange-300 text-base-content"
                   >
                     Create account
                   </Link>

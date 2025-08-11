@@ -24,7 +24,7 @@ const MyProductCard = ({ product }) => {
     }).then(result => console.log(result))
   };
   return (
-    <div className="relative bg-white/80 border border-gray-200 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition duration-300 backdrop-blur-sm">
+    <div className="relative  border border-base-content rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition duration-300 backdrop-blur-sm">
       <div className="overflow-hidden group">
         <img
           src={image}
@@ -34,8 +34,8 @@ const MyProductCard = ({ product }) => {
       </div>
 
       <div className="p-4 space-y-2">
-        <h2 className="text-xl font-bold text-gray-800">{name}</h2>
-        <p className="text-sm text-gray-500">
+        <h2 className="text-xl font-bold     -800">{name}</h2>
+        <p className="text-sm     -500">
           {category} • {brandName}
         </p>
 
@@ -48,7 +48,7 @@ const MyProductCard = ({ product }) => {
           </span>
         </div>
 
-        <div className="text-sm text-gray-700 mt-3 space-y-1">
+        <div className="text-sm     -700 mt-3 space-y-1">
           <p>
             Main Stock: <span className="font-medium">{mainQuantity}</span>
           </p>
@@ -58,7 +58,7 @@ const MyProductCard = ({ product }) => {
           </p>
         </div>
 
-        <p className="text-gray-600 text-sm mt-2">
+        <p className="    -600 text-sm mt-2">
           {description.slice(0, 80)}...
         </p>
 

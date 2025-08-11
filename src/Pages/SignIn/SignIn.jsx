@@ -65,7 +65,7 @@ const Login = () => {
         <Navbar></Navbar>
         <NavbarSwitcher></NavbarSwitcher>
       </header>
-      <div className="min-h-screen flex items-center mt-10 lg:mt-0 justify-center         v   p-4">
+      <div className=" flex items-center mt-10 mb-12  lg:mt-20 justify-center  p-4">
         <div className="flex w-full max-w-6xl bg-white rounded-2xl shadow-2xl overflow-hidden">
           <div
             className="w-1/2 hidden md:flex flex-col items-center justify-center bg-cover relative"
