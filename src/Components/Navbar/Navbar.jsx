@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import { HiOutlineUser } from "react-icons/hi2";
 import Nav from "../Nav/Nav";
 import { use } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
-import { useState } from "react";
 import { LuMessageSquareText } from "react-icons/lu";
 import { LuClipboardList } from "react-icons/lu";
 import AllCategories from "../../Pages/AllCategories/AllCategories";
 import AppLogo from "../AppLogo/AppLogo";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
   const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "light"
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   const navLink = (
     <>
       <Link className="relative group hidden lg:block md:block">
         All Category
-        <ul className="absolute left-0 top-full mt-2 p-10 w-200 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-300 z-20">
+        <ul className="absolute left-0 top-full mt-2 p-10 w-200 bg-white rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-300 z-20">
           <AllCategories></AllCategories>
         </ul>
       </Link>
@@ -31,7 +43,6 @@ const Navbar = () => {
           <NavLink to={"/myproducts"}>My product</NavLink>
         </>
       ) : null}
-      
     </>
   );
 
@@ -44,16 +55,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="container mx-auto text-black">
+    <div className="container mx-auto">
       <div className="py-2">
         <div className="flex items-center mt-2">
           <div className="navbar-start">
             <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="text-black  w-1 mx-2 lg:hidden"
-              >
+              <div tabIndex={0} role="button" className="w-1 mx-2 lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -80,33 +87,34 @@ const Navbar = () => {
             <AppLogo></AppLogo>
           </div>
           <div className="navbar-center hidden lg:flex">
-            {/* <ul className="menu menu-horizontal px-1 text-black gap-5 ">
-              {navLink}
-            </ul> */}
+            {/* <ul className="menu menu-horizontal px-1 gap-5">{navLink}</ul> */}
           </div>
-          <div className="navbar-end  gap-3 lg:gap-6 items-center flex">
+          <div className="navbar-end gap-3 lg:gap-6 items-center flex">
             <div className="hidden lg:block">
-              <p className="text-black lg:text-[11px] text-[9px] ">Deliver:</p>
+              <p className="lg:text-[11px] text-[9px] text-base-content">Deliver:</p>
 
               <span className="flex gap-1 items-center ">
                 <img className="w-4 lg:w-5" src="/Bangladesh.png" alt="" />
-                <p className=" text-[7px] lg:text-[11px] font-semibold text-black">
+                <p className="text-[7px] lg:text-[11px] font-semibold text-base-content">
                   BD
                 </p>
               </span>
             </div>
 
-            {/* cart icone */}
+            {/* cart icon with theme-aware color */}
             <Link to={"/cart"}>
-              <PiShoppingCartSimple size={24} color="black" />
+              <PiShoppingCartSimple size={24} className="text-base-content" />
             </Link>
             {user ? (
               <>
                 <div>
-                  <LuMessageSquareText size={22} color="black" />
+                  <LuMessageSquareText size={22} className="text-base-content" />
                 </div>
                 <div>
-                  <LuClipboardList size={23} color="black" />
+                  <LuClipboardList size={23} className="text-base-content" />
+                </div>
+                <div>
+                  <ThemeToggle theme={theme} toggleTheme={toggleTheme}></ThemeToggle>
                 </div>
                 <div className="relative inline-block text-left">
                   <div onClick={handleToggle} className="cursor-pointer">
@@ -119,12 +127,12 @@ const Navbar = () => {
                   {open && (
                     <div className="absolute right-0 mt-3 w-48 origin-top-right rounded-md shadow-lg bg-white dark:bg-[#1f2937] ring-1 ring-black ring-opacity-5 z-10">
                       <div className="py-1 px-2">
-                        <p className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 font-medium">
+                        <p className="block px-4 py-2 text-sm text-base-content font-medium">
                           {user.displayName}
                         </p>
                         <button
                           onClick={() => alert("Profile clicked")}
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
+                          className="block w-full text-left px-4 py-2 text-sm text-base-content hover:bg-gray-100 dark:hover:bg-gray-600"
                         >
                           Profile
                         </button>
@@ -142,10 +150,10 @@ const Navbar = () => {
             ) : (
               <>
                 <div className="flex items-center gap-1">
-                  <HiOutlineUser size={23} color="white" />
+                  <HiOutlineUser size={23} className="text-base-content" />
                   <Link
                     to={"/SignIn"}
-                    className="text-black text-[14px] lg:text-[16px] font-semibold"
+                    className="text-[14px] lg:text-[16px] font-semibold text-base-content"
                   >
                     Login
                   </Link>
@@ -154,7 +162,7 @@ const Navbar = () => {
                 <div>
                   <Link
                     to={"/register"}
-                    className="border text-md font-medium bg-orange-600 px-1 py-2 rounded-2xl text-black hover:bg-none border-orange-300"
+                    className="border text-md font-medium bg-orange-600 px-1 py-2 rounded-2xl hover:bg-none border-orange-300 text-base-content"
                   >
                     Create account
                   </Link>
@@ -164,7 +172,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="text-black font-[600]">
+      <div className=" text-base-content font-[600]">
         <Nav navLink={navLink}></Nav>
       </div>
     </div>

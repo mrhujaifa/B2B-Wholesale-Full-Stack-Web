@@ -1,8 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import { NavLink } from "react-router";
 import { AiOutlineBars } from "react-icons/ai";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 const Nav = ({ navLink }) => {
+  const { user } = use(AuthContext);
   return (
     <div>
       <div className="hidden lg:block md:block">

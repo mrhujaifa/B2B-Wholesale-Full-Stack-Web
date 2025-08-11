@@ -60,7 +60,7 @@ const AddProductPage = () => {
         <NavbarSwitcher></NavbarSwitcher>
       </header>
 
-      <div className="max-w-5xl mx-auto py-10 mt-10 px-6">
+      <div className="max-w-5xl mx-auto py-10 mt-10 px-6 border rounded-2xl mb-20">
         <h1 className="text-3xl font-bold mb-8 text-center">Add New Product</h1>
 
         <form

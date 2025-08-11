@@ -53,17 +53,17 @@ const AllProducts = () => {
         transition={{ duration: 0.6 }}
       >
         <div className="flex container justify-between mt-10 mx-auto items-center">
-          <div className=" rounded-2xl mx-5 lg:mx-0   ">
+          <div className=" rounded-2xl mx-5 lg:mx-0     ">
             <label className="font-semibold">Filter by Minimum Quantity:</label> <br />
             <select
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
-              className="border px-3 py-1 rounded w-40"
+              className="border  px-3 py-1 rounded w-40"
             >
-              <option value="All">All</option>
-              <option value="100">100+</option>
-              <option value="50">50+</option>
-              <option value="30">30+</option>
+              <option className="text-black" value="All">All</option>
+              <option className="text-black" value="100">100+</option>
+              <option className="text-black" value="50">50+</option>
+              <option className="text-black" value="30">30+</option>
             </select>
           </div>
 
@@ -74,8 +74,8 @@ const AllProducts = () => {
               onChange={(e) => setViewType(e.target.value)}
               className="border px-3 py-1 rounded mt-2 w-full"
             >
-              <option value="card">Card View</option>
-              <option value="table">Table View</option>
+              <option className="text-black" value="card">Card View</option>
+              <option className="text-black" value="table">Table View</option>
             </select>
           </div>
         </div>
@@ -106,7 +106,7 @@ const AllProducts = () => {
             </div>
           ) : filter.length === 0 ? (
             <div className="text-center py-20">
-              <h2 className="text-2xl font-bold text-gray-700">
+              <h2 className="text-2xl font-bold ">
                 No Products Found
               </h2>
               <p className="text-gray-500 mt-2">
@@ -134,7 +134,7 @@ const AllProducts = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="bg-gradient-to-tr from-white via-gray-50 to-gray-100 rounded-3xl shadow-xl p-6 flex flex-col justify-between h-[380px] w-full max-w-xs mx-auto cursor-pointer 
+                    className=" border rounded-xl shadow-xl p-6 flex flex-col justify-between h-[380px] w-full max-w-xs mx-auto cursor-pointer 
                  hover:shadow-2xl hover:scale-[1.03] transition-transform duration-300"
                   >
                     <div className="overflow-hidden rounded-2xl mb-4 h-48">
@@ -148,13 +148,13 @@ const AllProducts = () => {
 
                     <div className="flex flex-col flex-grow">
                       <h3
-                        className="text-lg font-extrabold text-gray-900 truncate mb-2"
+                        className="text-lg font-extrabold  truncate mb-2"
                         title={product.name}
                       >
                         {product.name}
                       </h3>
 
-                      <div className="flex justify-between items-center mb-2 text-sm text-gray-600 font-medium">
+                      <div className="flex justify-between items-center mb-2 text-sm font-medium">
                         <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
                           ${product.price}
                         </span>
@@ -163,7 +163,7 @@ const AllProducts = () => {
 
                       <hr className="border-gray-300 mb-3" />
 
-                      <p className="text-gray-700 text-sm">
+                      <p className=" text-sm">
                         Min Qty:{" "}
                         <span className="font-semibold">
                           {product.minimumSellingQuantity}

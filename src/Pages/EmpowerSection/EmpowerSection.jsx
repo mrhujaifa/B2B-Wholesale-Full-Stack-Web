@@ -5,10 +5,10 @@ const EmpowerSection = () => {
     <div className="container mx-auto px-4 py-12">
       {/* Heading */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-[#4e2600] mb-4">
+        <h2 className="text-4xl font-bold  mb-4">
           Empowering businesses through global trade
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className=" max-w-2xl mx-auto">
           Alibaba.com offers one-stop B2B trading solutions for global small and
           medium-sized businesses, empowering them to transform through digital
           trade, grasp opportunities, and accelerate growth internationally.

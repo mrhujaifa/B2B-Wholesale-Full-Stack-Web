@@ -69,7 +69,7 @@ const CartPage = () => {
           <div className="flex flex-col items-center justify-center text-center py-20">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-24 w-24 text-gray-400 mb-6"
+              className="h-24 w-24        -400 mb-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -81,10 +81,10 @@ const CartPage = () => {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m5-9v9m4-9v9m4-9l2 9"
               />
             </svg>
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            <h2 className="text-3xl font-bold        -800 mb-2">
               Your cart is empty!
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="       -600 mb-6">
               Looks like you haven’t added anything to your cart yet.
             </p>
             <Link to={'/'}
@@ -107,21 +107,21 @@ const CartPage = () => {
                   className="rounded-xl h-40 object-cover mb-4"
                 />
                 <h2 className="text-xl font-semibold">{item.name}</h2>
-                <p className="text-sm text-gray-600">{item.description}</p>
+                <p className="text-sm        -600">{item.description}</p>
                 <div className="mt-2 flex flex-wrap gap-2 text-sm">
-                  <span className="bg-gray-100 px-2 py-1 rounded">
+                  <span className="     px-2 py-1 rounded">
                     Brand: {item.brandName}
                   </span>
-                  <span className="bg-gray-100 px-2 py-1 rounded">
+                  <span className="     px-2 py-1 rounded">
                     Category: {item.category}
                   </span>
-                  <span className="bg-gray-100 px-2 py-1 rounded">
+                  <span className="     px-2 py-1 rounded">
                     Qty: {item.quantity}
                   </span>
-                  <span className="bg-gray-100 px-2 py-1 rounded">
+                  <span className="     px-2 py-1 rounded">
                     Price: ${item.price}
                   </span>
-                  <span className="bg-gray-100 px-2 py-1 rounded">
+                  <span className="     px-2 py-1 rounded">
                     Date: {item.date}
                   </span>
                 </div>

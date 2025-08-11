@@ -18,7 +18,7 @@ const NavbarSwitcher = () => {
 
   return (
     <>
-      <div className="fixed z-999 left-0 right-0 top-0 bg-gradient-to-r from-[hsl(0,89%,11%)] to-[hsl(0,100%,50%)] ">
+      <div className="fixed z-999 left-0 right-0 top-0 shadow bg-white ">
         {scrolled && <SwithcherNav></SwithcherNav>}
       </div>
     </>

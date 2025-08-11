@@ -9,16 +9,19 @@ import { useState } from "react";
 import { LuMessageSquareText } from "react-icons/lu";
 import { LuClipboardList } from "react-icons/lu";
 import AllCategories from "../../Pages/AllCategories/AllCategories";
+import { useEffect } from "react";
+import ToggleSwitch from "../ThemeToggle/ThemeToggle";
 
-const Header = () => {
+const Header = ({theme,toggleTheme}) => {
   const { user, logOut } = use(AuthContext);
   const [open, setOpen] = useState(false);
+  
 
   const navLink = (
     <>
       <Link className="relative group hidden lg:block md:block">
         All Category
-        <ul className="absolute left-0 top-full mt-2 p-10 w-200 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-300 z-20">
+        <ul className="absolute left-0 top-full mt-2 p-10 w-200 bg-white    rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-300 z-20">
           <AllCategories></AllCategories>
         </ul>
       </Link>
@@ -50,7 +53,7 @@ const Header = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="text-black  w-1 mx-2 lg:hidden"
+                className="    w-1 mx-2 lg:hidden"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +82,7 @@ const Header = () => {
               <img className="w-8 lg:w-20 " src="/web-logo.png" alt="" />
               <p className=" font-bold hidden lg:block">
                 {/* <span className="text-white">B2B </span>   */}
-                <span className="text-[#ff6600] text-sm absolute left-47 top-1">
+                <span className="text-orange-600 text-sm absolute left-47 top-1">
                   Wholesale
                 </span>
               </p>
@@ -113,6 +116,9 @@ const Header = () => {
                 </div>
                 <div>
                   <LuClipboardList size={23} color="white" />
+                </div>
+                <div>
+                  <ToggleSwitch theme={theme} toggleTheme={toggleTheme} />
                 </div>
                 <div className="relative inline-block text-left">
                   <div onClick={handleToggle} className="cursor-pointer">
@@ -160,7 +166,7 @@ const Header = () => {
                 <div>
                   <Link
                     to={"/register"}
-                    className="border text-md font-medium bg-orange-600 px-1 py-2 rounded-2xl text-white hover:bg-none border-orange-300"
+                    className=" hidden lg:block text-md font-medium bg-orange-600 px-3 py-1.5 rounded-lg text-white hover:bg-none border border-orange-500  border-orange-300"
                   >
                     Create account
                   </Link>

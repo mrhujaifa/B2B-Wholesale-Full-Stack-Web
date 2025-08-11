@@ -1,284 +1,174 @@
-import React, { useState } from "react";
+import React, { use } from "react";
+import { AuthContext } from "../../Contexts/AuthContext";
 import { Link, NavLink } from "react-router";
 
-import { FaUser, FaTachometerAlt, FaSignOutAlt } from "react-icons/fa";
-import { Settings } from "lucide-react";
+import { PiShoppingCartSimple } from "react-icons/pi";
+import { HiOutlineUser } from "react-icons/hi2";
 
-import { FaHandHoldingDollar } from "react-icons/fa6";
-import { AuthContext } from "../../Contexts/AuthContext";
-import { use } from "react";
-import AppLogo from "../AppLogo/AppLogo";
+import { useState } from "react";
+import { LuMessageSquareText } from "react-icons/lu";
+import { LuClipboardList } from "react-icons/lu";
+import AllCategories from "../../Pages/AllCategories/AllCategories";
 
-const SwithcherNav = () => {
-  const { user, logOut } = use(AuthContext)
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const handleLogOut = () => {
-    logOut();
-    setDropdownOpen(false);
-  };
-
-  const navItems = (
+const ScrollNavbar = () => {
+  const { user, logOut } = use(AuthContext);
+  const [open, setOpen] = useState(false);
+  const navLink = (
     <>
-      <li>
-        <NavLink to="/" className="text-white font-medium">
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/pending-requests" className="text-white font-medium">
-          All Donor Requests
-        </NavLink>
-      </li>
+      <NavLink to={"/"}>Home</NavLink>
+      <NavLink to={"/allproducts"}>All product</NavLink>
+      {user ? (
+        <>
+          <NavLink to={"/addProducts"}>Add Product</NavLink>
+          <NavLink to={"/myproducts"}>My product</NavLink>
+        </>
+      ) : null}
 
-      <li>
-        <NavLink to="/contact" className="text-white font-medium">
-          Contact
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/donation-request"
-          className="text-white font-medium"
-        >
-          Donation Requests
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/blogs" className="text-white font-medium">
-          Blog
-        </NavLink>
-      </li>
-      {user && (
-        <li>
-          <NavLink to="/dashboard" className="text-white font-medium">
-            Dashboard
-          </NavLink>
-        </li>
-      )}
+      <NavLink to={"/coming-soon"}>Buyer Central</NavLink>
+      <NavLink to={"/coming-soon"}>Gift Cards</NavLink>
+      <NavLink to={"/coming-soon"}>Customer Service</NavLink>
+      {/* <NavLink to={""}>Become a supplier</NavLink> */}
     </>
   );
+  const handleToggle = () => setOpen(!open);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => alert("User logged out successfully"))
+      .catch((error) => console.log(error));
+  };
 
   return (
-    <div className="w-full text-white  sticky top-0 z-50  lg:py-4 ">
-      <div className="navbar container mx-auto flex justify-between items-center py-2">
-        {/* Left: Mobile Hamburger Menu */}
-        <div className="lg:hidden">
-          <div className="dropdown dropdown-start">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+    <div className="container mx-auto">
+      <div className="py-3">
+        <div className="flex items-center mt-2">
+          <div className="navbar-start">
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                role="button"
+                className="text-black  w-1 mx-2 lg:hidden"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-3 bg-[#da0303] rounded-box shadow w-52 space-y-2"
-            >
-              {navItems}
-              {!user && (
-                <>
-                  <li>
-                    <Link
-                      to="/signIn"
-                      className="btn btn-sm btn-outline w-full"
-                    >
-                      Sign In
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/register"
-                      className="btn btn-sm btn-outline w-full"
-                    >
-                      Register
-                    </Link>
-                  </li>
-                </>
-              )}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {" "}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />{" "}
+                </svg>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              >
+                {navLink}
+              </ul>
+            </div>
+            <span className="text-xl flex items-center gap-2 px-6 lg:px-0">
+              <img className="w-8 lg:w-20 " src="/web-logo.png" alt="" />
+              <p className=" font-bold hidden lg:block">
+                {/* <span className="text-black">B2B </span>   */}
+                <span className="text-[#ff6600] text-sm absolute left-47 top-1">
+                  Wholesale
+                </span>
+              </p>
+            </span>
+          </div>
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1 text-black text-[15px] gap-5 ">
+              {navLink}
             </ul>
           </div>
-        </div>
+          <div className="navbar-end  gap-3 lg:gap-6 items-center flex">
+            <div className="hidden lg:block">
+              <p className="text-black lg:text-[11px] text-[9px] ">Deliver:</p>
 
-        {/* Center: Logo */}
-        <div className="flex justify-center items-center gap-1">
-         
-          <AppLogo></AppLogo>
-        </div>
-
-        {/* Center Nav Items for Desktop */}
-        {/* Center Nav Items for Desktop */}
-        <div className="hidden lg:flex ">
-          <ul className="flex justify-center gap-6 items-center">{navItems}</ul>
-        </div>
-
-        {/* Right Side: Auth buttons or Avatar */}
-        <div className="flex items-center gap-2">
-          {/* Mobile: Show Sign In/Register on right side if no user */}
-          {!user && (
-            <div className="lg:hidden flex gap-2">
-              <Link
-                to="/signIn"
-                className="
-    btn btn-sm btn-outline
-    border-2 border-[#da0303]
-    text-[#da0303]
-    rounded-lg
-    px-5 py-2
-    transition
-    duration-300
-    ease-in-out
-    hover:bg-red-600 hover:text-white
-    focus:outline-none focus:ring-2 focus:ring-[#da0303] focus:ring-offset-2
-    active:scale-95
-    shadow-md
-  "
-              >
-                Sign In
-              </Link>
+              <span className="flex gap-1 items-center ">
+                <img className="w-4 lg:w-5" src="/Bangladesh.png" alt="" />
+                <p className=" text-[7px] lg:text-[11px] font-semibold text-black">
+                  BD
+                </p>
+              </span>
             </div>
-          )}
 
-          {/* Desktop: Show Sign In/Register on right if no user */}
-          {!user && (
-            <div className="hidden lg:flex gap-2">
-              <Link
-                to="/signIn"
-                className="
-    btn btn-sm btn-outline
-    border-2 border-[#da0303]
-    text-white
-    rounded-lg
-    px-5 py-2
-    transition
-    duration-300
-    ease-in-out
-    hover:bg-red-600 hover:text-white
-    focus:outline-none focus:ring-2 focus:ring-[#da0303] focus:ring-offset-2
-    active:scale-95
-    shadow-md"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/register"
-                className="
-    btn btn-sm btn-outline
-    border-2 border-[#da0303]
-    text-white
-    rounded-lg
-    px-5 py-2
-    transition
-    duration-300
-    ease-in-out
-    hover:bg-red-600 hover:text-white
-    focus:outline-none focus:ring-2 focus:ring-[#da0303] focus:ring-offset-2
-    active:scale-95
-    shadow-md"
-              >
-                Register
-              </Link>
-            </div>
-          )}
-
-          {user && (
-            <div className=" lg:mr-5">
-              {/* Large device button */}
-              <Link to={"/donate-funding"}>
-                <button className="hidden lg:inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white px-4 py-2 rounded-md shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
-                  <FaHandHoldingDollar
-                    size={20}
-                    className="text-white drop-shadow-sm animate-pulse"
-                  />
-                  <span className="text-sm font-semibold tracking-wide">
-                    Donate
-                  </span>
-                </button>
-              </Link>
-
-              {/* Small device button */}
-              <Link to={"/donate-funding"}>
-                <button className="inline-flex lg:hidden items-center gap-1 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white px-3 py-1.5 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
-                  <FaHandHoldingDollar
-                    size={16}
-                    className="text-white animate-pulse"
-                  />
-                  <span className="text-xs font-medium">Donate</span>
-                </button>
-              </Link>
-            </div>
-          )}
-
-          {/* User avatar dropdown */}
-          {user && (
-            <div className="relative">
-              <div
-                className="avatar cursor-pointer"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-              >
-                <div className="lg:w-11 w-7 rounded-full ring ring-white ring-offset-base-100 ring-offset-2">
-                  <img
-                    src={
-                      user.photoURL || "https://i.ibb.co/S4Hc49F9/user-1.png"
-                    }
-                    alt="User Avatar"
-                    className=" lg:max-w-10 max-w-7"
-                  />
+            {/* cart icone */}
+            <Link to={"/cart"}>
+              <PiShoppingCartSimple size={24} color="black" />
+            </Link>
+            {user ? (
+              <>
+                <div>
+                  <LuMessageSquareText size={22} color="black" />
                 </div>
-              </div>
-
-              {dropdownOpen && (
-                <div className="absolute right-0 mt-3 w-72 bg-white text-black shadow-xl rounded-xl z-50 transition-all duration-300 animate-fade-in">
-                  <ul className="p-4 space-y-3 text-base">
-                    <li>
-                      <Link
-                        to="/profile"
-                        onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md"
-                      >
-                        <FaUser className="text-blue-600" /> My Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/dashboard"
-                        onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md"
-                      >
-                        <FaTachometerAlt className="text-green-600" /> Dashboard
-                      </Link>
-                    </li>
-                    <li>
-                      <button className="flex items-center gap-3 text-gray-700 hover:bg-gray-100 w-full p-2 rounded-md">
-                        <Settings /> Setting
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={handleLogOut}
-                        className="flex items-center gap-3 text-red-600 hover:bg-red-50 w-full p-2 rounded-md"
-                      >
-                        <FaSignOutAlt /> Logout
-                      </button>
-                    </li>
-                  </ul>
+                <div>
+                  <LuClipboardList size={23} color="black" />
                 </div>
-              )}
-            </div>
-          )}
+                <div className="relative inline-block text-left">
+                  <div onClick={handleToggle} className="cursor-pointer">
+                    <div className="avatar w-14 lg:w-15">
+                      <div className="ring-primary ring-offset-base-100 lg:w-11 mx-3 rounded-full ring-2 ring-offset-2">
+                        <img src={user.photoURL} alt="User" />
+                      </div>
+                    </div>
+                  </div>
+                  {open && (
+                    <div className="absolute right-0 mt-3 w-48 origin-top-right rounded-md shadow-lg bg-black dark:bg-[#1f2937] ring-1 ring-black ring-opacity-5 z-10">
+                      <div className="py-1 px-2">
+                        <p className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 font-medium">
+                          {user.displayName}
+                        </p>
+                        <button
+                          onClick={() => alert("Profile clicked")}
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          Profile
+                        </button>
+                        <button
+                          onClick={handleLogOut}
+                          className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          Log Out
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center gap-1">
+                  <HiOutlineUser size={23} color="black" />
+                  <Link
+                    to={"/SignIn"}
+                    className="text-black text-[14px] lg:text-[16px] font-semibold"
+                  >
+                    Login
+                  </Link>
+                </div>
+                {/* signUP btn */}
+                <div>
+                  <Link
+                    to={"/register"}
+                    className="border hidden lg:block text-md font-medium bg-orange-600 px-3 py-2 rounded-lg text-white hover:bg-none border-orange-300"
+                  >
+                    Create account
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default SwithcherNav;
+export default ScrollNavbar;

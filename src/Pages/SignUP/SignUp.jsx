@@ -4,6 +4,8 @@ import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import NavbarSwitcher from "../../Components/ScrollNavbar/NavbarSwicher";
 
 const Register = () => {
   const { createUser, ProfileUpdate } = useContext(AuthContext);
@@ -58,8 +60,9 @@ const Register = () => {
 
   return (
     <div>
-      <header className="bg-[#010100e9] shadow-2xl fixed top-0 right-0 left-0 z-20">
-        <Header />
+      <header  className=" text-black top-0 right-0 left-0 z-20">
+        <Navbar></Navbar>
+        <NavbarSwitcher></NavbarSwitcher>
       </header>
 
       <div className="min-h-screen flex items-center mt-20 justify-center bg-gray-100 p-4">

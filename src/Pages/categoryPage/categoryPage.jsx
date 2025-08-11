@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import Header from "../../Components/Header/Header";
+import Navbar from "../../Components/Navbar/Navbar";
+import NavbarSwitcher from "../../Components/ScrollNavbar/NavbarSwicher";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -19,8 +21,9 @@ const CategoryPage = () => {
 
   return (
     <div>
-      <header className="bg-[#010100e9] shadow-2xl fixed top-0 right-0 left-0 z-20">
-        <Header />
+      <header className=" text-black top-0 right-0 left-0 z-20">
+        <Navbar></Navbar>
+        <NavbarSwitcher></NavbarSwitcher>
       </header>
       <div className="p-4 container mx-auto mt-30">
         <h2 className="text-2xl mb-4 font-bold">{category} Products</h2>
@@ -40,13 +43,13 @@ const CategoryPage = () => {
               />
 
               <h3 className="text-lg font-semibold">{product.name}</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm      -600">
                 Brand: {product.brandName}
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm      -600">
                 Category: {product.category}
               </p>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm      -600">
                 Min. Quantity: {product.minimumSellingQuantity}
               </p>
               <p className="text-sm mt-2">

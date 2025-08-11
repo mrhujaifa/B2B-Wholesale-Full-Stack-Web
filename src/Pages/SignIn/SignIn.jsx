@@ -4,6 +4,8 @@ import Footer from "../../Components/Footer/Footer";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
+import Navbar from "../../Components/Navbar/Navbar";
+import NavbarSwitcher from "../../Components/ScrollNavbar/NavbarSwicher";
 
 const Login = () => {
   const { singInUser, signInwithGoogle } = useContext(AuthContext);
@@ -59,17 +61,20 @@ const Login = () => {
 
   return (
     <div>
-      <header className="bg-[#010100e9] shadow-2xl fixed top-0 right-0 left-0 z-20">
-        <Header />
+      <header className=" text-black top-0 right-0 left-0 z-20">
+        <Navbar></Navbar>
+        <NavbarSwitcher></NavbarSwitcher>
       </header>
-      <div className="min-h-screen flex items-center mt-10 lg:mt-0 justify-center bg-gray-100 p-4">
+      <div className="min-h-screen flex items-center mt-10 lg:mt-0 justify-center         v   p-4">
         <div className="flex w-full max-w-6xl bg-white rounded-2xl shadow-2xl overflow-hidden">
           <div
             className="w-1/2 hidden md:flex flex-col items-center justify-center bg-cover relative"
-            style={{ backgroundImage: "url('https://i.postimg.cc/zffhWkmG/1140554-OQRG4-U0.jpg')" }}
+            style={{
+              backgroundImage:
+                "url('https://i.postimg.cc/zffhWkmG/1140554-OQRG4-U0.jpg')",
+            }}
           >
             <div className="absolute inset-0 bg-opacity-60"></div>
-            
           </div>
 
           <div className="w-full md:w-1/2 flex items-center justify-center p-10">
@@ -110,10 +115,17 @@ const Login = () => {
 
                 <div className="flex items-center justify-between">
                   <label className="flex items-center space-x-2">
-                    <input type="checkbox" className="checkbox validator" required />
+                    <input
+                      type="checkbox"
+                      className="checkbox validator"
+                      required
+                    />
                     <span className="text-sm text-gray-600">Remember me</span>
                   </label>
-                  <a href="#" className="text-sm text-orange-400 hover:underline">
+                  <a
+                    href="#"
+                    className="text-sm text-orange-400 hover:underline"
+                  >
                     Forgot password?
                   </a>
                 </div>
@@ -162,7 +174,10 @@ const Login = () => {
 
               <p className="text-center text-sm text-gray-500">
                 Don’t have an account?{" "}
-                <Link to={"/register"} className="text-orange-400 hover:underline">
+                <Link
+                  to={"/register"}
+                  className="text-orange-400 hover:underline"
+                >
                   Contact Sales
                 </Link>
               </p>
