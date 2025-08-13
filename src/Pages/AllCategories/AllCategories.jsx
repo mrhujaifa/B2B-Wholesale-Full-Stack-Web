@@ -8,8 +8,7 @@ const categoryImages = {
   "Electronics & Gadgets": "https://i.ibb.co.com/kVrn0LcG/gadgets-1.png",
   "Health & Beauty": "https://i.ibb.co.com/Tq8CxBHr/products-1.png",
   "Home & Kitchen Appliances": "https://i.ibb.co.com/fYcHZxys/domestic.png",
-  "Office Supplies & Stationery":
-    "https://i.ibb.co.com/tpjfZK6N/stationery-1.png",
+  "Office Supplies & Stationery":"https://i.ibb.co.com/tpjfZK6N/stationery-1.png",
 };
 
 const AllCategories = () => {

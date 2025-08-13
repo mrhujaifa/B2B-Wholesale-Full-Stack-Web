@@ -111,27 +111,45 @@ const Header = ({ theme, toggleTheme }) => {
             {user ? (
               <>
                 {/* Icons Section */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   {/* Messages Icon */}
                   <button
-                    className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-                    title="Messages"
+                    className="relative group p-2 rounded-full  dark:bg-gray-800 
+        hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 
+        transition-all duration-300 shadow-sm hover:shadow-md 
+        active:scale-95"
                   >
                     <LuMessageSquareText
                       size={20}
-                      className="text-gray-800 dark:text-gray-200"
+                      className="text-white dark:text-gray-200 group-hover:text-white transition-colors duration-300"
                     />
+                    <span
+                      className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs 
+        bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition 
+        pointer-events-none whitespace-nowrap"
+                    >
+                      Messages
+                    </span>
                   </button>
 
-                  {/* Orders/Tasks Icon */}
+                  {/* Orders Icon */}
                   <button
-                    className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-                    title="Orders"
+                    className="relative group p-2 rounded-full dark:bg-gray-800 
+        hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-500 
+        transition-all duration-300 shadow-sm hover:shadow-md 
+        active:scale-95"
                   >
                     <LuClipboardList
                       size={21}
-                      className="text-gray-800 dark:text-gray-200"
+                      className="text-white dark:text-gray-200 group-hover:text-white transition-colors duration-300"
                     />
+                    <span
+                      className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs 
+        bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition 
+        pointer-events-none whitespace-nowrap"
+                    >
+                      Orders
+                    </span>
                   </button>
 
                   {/* Theme Toggle */}
@@ -140,23 +158,32 @@ const Header = ({ theme, toggleTheme }) => {
                   {/* User Menu */}
                   <div className="relative inline-block text-left">
                     {/* Avatar */}
-                    <div onClick={handleToggle} className="cursor-pointer">
-                      <div className="avatar">
-                        <div className="ring-primary ring-offset-base-100 w-10 h-10 rounded-full ring-2 ring-offset-2 overflow-hidden hover:scale-105 transition">
-                          <img src={user.photoURL} alt="User" />
-                        </div>
+                    <div
+                      onClick={handleToggle}
+                      className="cursor-pointer group"
+                    >
+                      <div
+                        className="ring-primary ring-offset-base-100 w-9 h-9 rounded-full ring-2 ring-offset-2 overflow-hidden 
+          hover:scale-110 transition-transform duration-300 shadow-md"
+                      >
+                        <img
+                          src={user.photoURL}
+                          alt="User"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     </div>
 
                     {/* Dropdown Menu */}
                     {open && (
                       <div
-                        className="absolute right-0 mt-3 w-52 origin-top-right rounded-lg shadow-lg 
-          bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-20 animate-fadeIn"
+                        className="absolute right-0 mt-3 w-56 origin-top-right rounded-xl shadow-lg backdrop-blur-lg 
+            bg-white/70 dark:bg-gray-800/80 ring-1 ring-black/10 dark:ring-white/10 z-20 
+            animate-slideDown"
                       >
                         <div className="py-2">
                           {/* User Name */}
-                          <p className="px-4 py-2 text-sm font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">
+                          <p className="px-4 py-2 text-sm font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200/50 dark:border-gray-700/50">
                             {user.displayName}
                           </p>
 
@@ -164,7 +191,7 @@ const Header = ({ theme, toggleTheme }) => {
                           <button
                             onClick={() => alert("Profile clicked")}
                             className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 
-              hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                hover:bg-gray-100/80 dark:hover:bg-gray-700/60 transition rounded-md"
                           >
                             View Profile
                           </button>
@@ -172,7 +199,7 @@ const Header = ({ theme, toggleTheme }) => {
                           {/* Logout Button */}
                           <button
                             onClick={handleLogOut}
-                            className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-gray-700 transition"
+                            className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50/70 dark:hover:bg-gray-700/60 transition rounded-md"
                           >
                             Log Out
                           </button>
@@ -181,6 +208,23 @@ const Header = ({ theme, toggleTheme }) => {
                     )}
                   </div>
                 </div>
+
+                {/* Animations */}
+                <style jsx>{`
+                  @keyframes slideDown {
+                    0% {
+                      opacity: 0;
+                      transform: translateY(-10px);
+                    }
+                    100% {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                  }
+                  .animate-slideDown {
+                    animation: slideDown 0.25s ease-out forwards;
+                  }
+                `}</style>
               </>
             ) : (
               <>
