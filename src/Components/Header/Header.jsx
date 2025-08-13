@@ -12,10 +12,9 @@ import AllCategories from "../../Pages/AllCategories/AllCategories";
 import { useEffect } from "react";
 import ToggleSwitch from "../ThemeToggle/ThemeToggle";
 
-const Header = ({theme,toggleTheme}) => {
+const Header = ({ theme, toggleTheme }) => {
   const { user, logOut } = use(AuthContext);
   const [open, setOpen] = useState(false);
-  
 
   const navLink = (
     <>
@@ -111,44 +110,76 @@ const Header = ({theme,toggleTheme}) => {
             </Link>
             {user ? (
               <>
-                <div>
-                  <LuMessageSquareText size={22} color="white" />
-                </div>
-                <div>
-                  <LuClipboardList size={23} color="white" />
-                </div>
-                <div>
+                {/* Icons Section */}
+                <div className="flex items-center gap-4">
+                  {/* Messages Icon */}
+                  <button
+                    className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                    title="Messages"
+                  >
+                    <LuMessageSquareText
+                      size={20}
+                      className="text-gray-800 dark:text-gray-200"
+                    />
+                  </button>
+
+                  {/* Orders/Tasks Icon */}
+                  <button
+                    className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                    title="Orders"
+                  >
+                    <LuClipboardList
+                      size={21}
+                      className="text-gray-800 dark:text-gray-200"
+                    />
+                  </button>
+
+                  {/* Theme Toggle */}
                   <ToggleSwitch theme={theme} toggleTheme={toggleTheme} />
-                </div>
-                <div className="relative inline-block text-left">
-                  <div onClick={handleToggle} className="cursor-pointer">
-                    <div className="avatar w-14 lg:w-15">
-                      <div className="ring-primary ring-offset-base-100 lg:w-11 mx-3 rounded-full ring-2 ring-offset-2">
-                        <img src={user.photoURL} alt="User" />
+
+                  {/* User Menu */}
+                  <div className="relative inline-block text-left">
+                    {/* Avatar */}
+                    <div onClick={handleToggle} className="cursor-pointer">
+                      <div className="avatar">
+                        <div className="ring-primary ring-offset-base-100 w-10 h-10 rounded-full ring-2 ring-offset-2 overflow-hidden hover:scale-105 transition">
+                          <img src={user.photoURL} alt="User" />
+                        </div>
                       </div>
                     </div>
+
+                    {/* Dropdown Menu */}
+                    {open && (
+                      <div
+                        className="absolute right-0 mt-3 w-52 origin-top-right rounded-lg shadow-lg 
+          bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-20 animate-fadeIn"
+                      >
+                        <div className="py-2">
+                          {/* User Name */}
+                          <p className="px-4 py-2 text-sm font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">
+                            {user.displayName}
+                          </p>
+
+                          {/* Profile Button */}
+                          <button
+                            onClick={() => alert("Profile clicked")}
+                            className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 
+              hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                          >
+                            View Profile
+                          </button>
+
+                          {/* Logout Button */}
+                          <button
+                            onClick={handleLogOut}
+                            className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-gray-700 transition"
+                          >
+                            Log Out
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  {open && (
-                    <div className="absolute right-0 mt-3 w-48 origin-top-right rounded-md shadow-lg bg-white dark:bg-[#1f2937] ring-1 ring-black ring-opacity-5 z-10">
-                      <div className="py-1 px-2">
-                        <p className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 font-medium">
-                          {user.displayName}
-                        </p>
-                        <button
-                          onClick={() => alert("Profile clicked")}
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
-                        >
-                          Profile
-                        </button>
-                        <button
-                          onClick={handleLogOut}
-                          className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600"
-                        >
-                          Log Out
-                        </button>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </>
             ) : (
